@@ -22,20 +22,20 @@ int main() {
 	}
 
 	int ** mat_A = new int *[DIM_a];
-	for (int i = 0; i < DIM_a; i++)
+	for (unsigned int i = 0; i < DIM_a; ++i)
 		mat_A[i] = new int[DIM_b];
 
 	int ** mat_B = new int *[DIM_c];
-	for (int i = 0; i < DIM_c; i++)
+	for (unsigned int i = 0; i < DIM_c; ++i)
 		mat_B[i] = new int[DIM_d];
 
 	int ** mat_C = new int *[DIM_a];
-	for (int i = 0; i < DIM_a; i++)
+	for (unsigned int i = 0; i < DIM_a; ++i)
 		mat_C[i] = new int[DIM_d];
 
 	cout << endl;
-	for (int m = 0; m < DIM_a; m++) {
-		for (int n = 0; n < DIM_b; n++) {
+	for (unsigned int m = 0; m < DIM_a; ++m) {
+		for (unsigned int n = 0; n < DIM_b; ++n) {
 			cout << "a" << m + 1 << "_" << n + 1 << " = ";
 			cin >> mat_A[m][n];
 		}
@@ -43,8 +43,8 @@ int main() {
 	}
 
 	cout << "----------------------------------------\n\n";
-	for (int m = 0; m < DIM_c; m++) {
-		for (int n = 0; n < DIM_d; n++) {
+	for (unsigned int m = 0; m < DIM_c; ++m) {
+		for (unsigned int n = 0; n < DIM_d; ++n) {
 			cout << "b" << m + 1 << "_" << n + 1 << " = ";
 			cin >> mat_B[m][n];
 		}
@@ -75,11 +75,11 @@ int main() {
 	cout << "----------------------------------------\n\n";
 
 	int prod1 = 1, prod2 = 1, summ = 0;
-	for (int m = 0; m < DIM_a; m++) {
-		for (int n = 0; n < DIM_d; n++) {
+	for (unsigned int m = 0; m < DIM_a; ++m) {
+		for (unsigned int n = 0; n < DIM_d; ++n) {
 
 			summ = 0;
-			for (int c = 0; c < DIM_b; c++)
+			for (unsigned int c = 0; c < DIM_b; ++c)
 				summ += mat_A[m][c] * mat_B[c][n];
 			mat_C[m][n] = summ;
 		}
@@ -88,7 +88,7 @@ int main() {
 	matrix_output(mat_C, DIM_a, DIM_d);
 
 
-	for (int i = 0; i < DIM_a; i++)
+	for (unsigned int i = 0; i < DIM_a; ++i)
 		delete[] mat_A[i];
 	delete[] mat_A;
 
@@ -98,11 +98,11 @@ int main() {
 
 void matrix_output(int ** MATRIX, int ROWS, int COLUMNS) {
 	if (ROWS == 1) {
-		for (int c = 0; c < COLUMNS; c++)
+		for (unsigned int c = 0; c < COLUMNS; ++c)
 			cout << " " << MATRIX[0][c];
 	}
 	else {
-		for (int c = 0; c < ROWS; c++) {
+		for (unsigned int c = 0; c < ROWS; ++c) {
 			if (c == 0)
 				cout << '\x2f';
 			else if (c == ROWS - 1)
@@ -110,7 +110,7 @@ void matrix_output(int ** MATRIX, int ROWS, int COLUMNS) {
 			else
 				cout << '\x7c';
 
-			for (int d = 0; d < COLUMNS; d++)
+			for (unsigned int d = 0; d < COLUMNS; ++d)
 				cout << " " << MATRIX[c][d];
 
 			if (c == 0)
